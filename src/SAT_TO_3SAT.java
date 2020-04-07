@@ -10,8 +10,8 @@ public class SAT_TO_3SAT {
 
         // starts to read file
         Parser parser = new Parser(inputFile);
-        SAT sat = parser.sat;
-        ThreeSAT sat3 = Reduction.ReduceSATTo3SAT(sat);
+        SAT sat = parser.readFile(inputFile);
+        ThreeSAT sat3 = Reduction.reduceSATTo3SAT(sat);
         sat3.print();
     }
 }

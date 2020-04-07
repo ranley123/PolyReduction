@@ -6,7 +6,7 @@ public class Reduction {
     static final int TWO = 2;
     static int offset;
 
-    public static ThreeSAT ReduceSATTo3SAT(SAT sat){
+    public static ThreeSAT reduceSATTo3SAT(SAT sat){
         ThreeSAT sat3 = new ThreeSAT();
         ArrayList<Clause> clauses = sat.getClauses();
         offset = sat.getNumVar() + 1;
@@ -59,5 +59,14 @@ public class Reduction {
 
         to3SATClauses(sat3, leftClause);
 
+    }
+
+    public static SAT reduceGraphColoringToSAT(GraphColor graphColor){
+        SAT sat = new SAT();
+        int numVar = graphColor.getNumNode() * graphColor.getNumColor();
+        sat.setNumVar(numVar);
+
+
+        return sat;
     }
 }
