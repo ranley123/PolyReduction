@@ -9,7 +9,8 @@ public class GraphColoring_TO_SAT {
         // starts to read file
         Parser parser = new Parser(inputFile);
         GraphColor graphColor = parser.readGraph(inputFile);
-//        SAT sat = Reduction.reduceGraphColoringToSAT(graphColor);
+        SAT sat = Reduction.reduceGraphColoringToSAT(graphColor);
 //        graphColor.print();
+        sat.print();
     }
 }

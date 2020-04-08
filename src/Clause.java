@@ -29,8 +29,9 @@ public class Clause {
     public void print(){
         StringBuilder sb = new StringBuilder();
         for(Integer i: this.getLiterals()){
-            sb.append(i + ", ");
+            sb.append(i + " ");
         }
+        sb.append("0");
         System.out.println(sb.toString());
     }
 

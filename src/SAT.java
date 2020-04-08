@@ -33,4 +33,11 @@ public class SAT {
         clauses = new ArrayList<>();
     }
 
+    public void print(){
+        for(Clause clause: clauses){
+            clause.print();
+        }
+        System.out.println(clauses.size());
+    }
+
 }

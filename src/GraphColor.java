@@ -1,11 +1,12 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class GraphColor {
-    int numNode = 0;
-    int numEdge = 0;
-    int numColor = 0;
-    ArrayList<Node> nodes = new ArrayList<>();
-    ArrayList<Edge> edges = new ArrayList<>();
+    private int numNode = 0;
+    private int numEdge = 0;
+    private int numColor = 0;
+    private ArrayList<Node> nodes = new ArrayList<>();
+    private ArrayList<Edge> edges = new ArrayList<>();
 
     public void setNumNode(int numNode){
         this.numNode = numNode;
@@ -34,10 +35,15 @@ public class GraphColor {
     public void setNodes(ArrayList<Node> nodes){
         this.nodes = nodes;
     }
+    public ArrayList<Node> getNodes(){
+        return nodes;
+    }
     public void setEdges(ArrayList<Edge> edges){
         this.edges = edges;
     }
-
+    public ArrayList<Edge> getEdges(){
+        return edges;
+    }
     public void print(){
         StringBuilder sb = new StringBuilder();
         for(Node node: nodes){
