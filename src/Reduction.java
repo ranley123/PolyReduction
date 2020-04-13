@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.HashMap;
+
 public class Reduction {
     static final int ZERO = 0;
     static final int ONE = 1;
@@ -112,7 +114,99 @@ public class Reduction {
 
     public static GraphColor reduce3SATToGraphColoring(ThreeSAT sat3){
         GraphColor graphColor = new GraphColor();
+        int numVar = sat3.getNumVar();
+        int numClause = sat3.getClauses().size();
+        ArrayList<Node> nodes = new ArrayList<>();
+        ArrayList<Clause> clauses = sat3.getClauses();
+        // 1 to n(numNode) are variables
+        // n + 1 to 2n are neg variables
+        // 2n + 1 to 2n + m (numClause) are clause variables
 
+        // make nodes
+        for(int i = 1; i <= numVar; i++){
+            nodes.add(new Node(i));
+        }
+
+        for(int i = 1; i <= numVar; i++){
+            nodes.add(new Node(-1 * i));
+        }
+
+        int varStart = 0 * numVar;
+        int negVarStart = 1 * numVar;
+        int colorStart = 2 * numVar;
+        int clauseStart = 3 * numVar;
+
+        for(int i = 0; i < numVar; i++){
+            nodes.add(new Node(colorStart + i + 1));
+        }
+
+        for(int i = 0; i < numClause; i++){
+            nodes.add(new Node(clauseStart + i + 1));
+        }
+
+        graphColor.setNodes(nodes);
+        graphColor.setNumNode(nodes.size());
+        graphColor.setNumColor(numVar);
+
+        // connect var nodes to negvar nodes
+        for(int i = 0; i < numVar; i++){
+            Edge newEdge = new Edge(nodes.get(varStart + i), nodes.get(negVarStart + i));
+            graphColor.addEdge(newEdge);
+        }
+
+        // connect var and negvar to color nodes
+        for(int i = 0; i < numVar; i++){
+            Node var = nodes.get(varStart + i);
+            Node negVar = nodes.get(negVarStart + i);
+            for(int j = 0; j < numVar; j++){
+                if(i == j)
+                    continue;
+                Node color = nodes.get(colorStart + j);
+                Edge edge1 = new Edge(var, color);
+                Edge edge2 = new Edge(negVar, color);
+                graphColor.addEdge(edge1);
+                graphColor.addEdge(edge2);
+            }
+        }
+
+        // connect color to color nodes
+        for(int i = 0; i < numVar; i++){
+            Node color1 = nodes.get(colorStart + i);
+            for(int j = i + 1; j < numVar; j++){
+                Node color2 = nodes.get(colorStart + j);
+                Edge edge = new Edge(color1, color2);
+                graphColor.addEdge(edge);
+            }
+        }
+
+        // connect clause node to var nodes
+        for(int i = 0; i < numClause; i++){
+            Node clauseNode = nodes.get(clauseStart + i);
+            Clause clause = clauses.get(i);
+
+            for(int j = 0; j < numVar; j++){
+                Node var = nodes.get(varStart + j);
+                Node negVar = nodes.get(negVarStart + j);
+                int value = var.getId();
+
+                if(clause.hasLiteral(value)){
+                    Edge edge = new Edge(negVar, clauseNode);
+                    graphColor.addEdge(edge);
+                }
+                else if(clause.hasLiteral(value * -1)){
+                    Edge edge = new Edge(var, clauseNode);
+                    graphColor.addEdge(edge);
+                }
+                else{
+                    Edge edge1 = new Edge(var, clauseNode);
+                    Edge edge2 = new Edge(negVar, clauseNode);
+                    graphColor.addEdge(edge1);
+                    graphColor.addEdge(edge2);
+                }
+            }
+        }
+
+        graphColor.setNumEdge(graphColor.getEdges().size());
         return graphColor;
     }
 

@@ -2,6 +2,11 @@ public class Edge {
     Node w;
     Node v;
     public Edge(Node w, Node v){
+        if(w.id > v.id){
+            int temp = w.id;
+            w.id = v.id;
+            v.id = temp;
+        }
         this.w = w;
         this.v = v;
     }

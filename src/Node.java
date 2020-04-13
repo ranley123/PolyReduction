@@ -4,6 +4,10 @@ public class Node {
         this.id = id;
     }
 
+    public int getId(){
+        return id;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (obj == this) {

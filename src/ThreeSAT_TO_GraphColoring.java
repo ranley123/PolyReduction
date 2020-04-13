@@ -15,8 +15,10 @@ public class ThreeSAT_TO_GraphColoring {
         sat3.setClauses(sat.getClauses());
 
         GraphColor graphColor = Reduction.reduce3SATToGraphColoring(sat3);
+//        System.out.println(graphColor.getEdges().size());
+//        System.out.println(graphColor.getNodes());
 
-//        graphColor.print();
+        graphColor.print();
 //        sat3.print();
     }
 }

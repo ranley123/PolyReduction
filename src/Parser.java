@@ -99,12 +99,6 @@ public class Parser {
                     int start = Integer.parseInt(words[1]);
                     int end = Integer.parseInt(words[2]);
 
-                    // in case the points are unordered, go to ascending order
-                    if(start > end){
-                        int temp = start;
-                        start = end;
-                        end = temp;
-                    }
                     Node w = new Node(start);
                     Node v = new Node(end);
 

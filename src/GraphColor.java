@@ -1,4 +1,3 @@
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class GraphColor {
@@ -32,6 +31,9 @@ public class GraphColor {
         return numColor;
     }
 
+    public void addEdge(Edge edge){
+        edges.add(edge);
+    }
     public void setNodes(ArrayList<Node> nodes){
         this.nodes = nodes;
     }
