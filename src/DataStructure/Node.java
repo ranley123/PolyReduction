@@ -1,5 +1,7 @@
+package DataStructure;
+
 public class Node {
-    int id;
+    public int id;
     public Node(int id){
         this.id = id;
     }

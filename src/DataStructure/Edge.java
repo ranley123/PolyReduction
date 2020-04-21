@@ -1,14 +1,17 @@
+package DataStructure;
+
 public class Edge {
-    Node w;
-    Node v;
+    public Node w;
+    public Node v;
     public Edge(Node w, Node v){
         if(w.id > v.id){
-            int temp = w.id;
-            w.id = v.id;
-            v.id = temp;
+            this.w = v;;
+            this.v = w;
         }
-        this.w = w;
-        this.v = v;
+        else{
+            this.w = w;
+            this.v = v;
+        }
     }
 
     @Override
@@ -24,5 +27,9 @@ public class Edge {
         return guest.w == this.w && guest.v == this.v;
     }
 
+    @Override
+    public String toString(){
+        return "(" + w.id + ", " + v.id + ")";
+    }
 
 }

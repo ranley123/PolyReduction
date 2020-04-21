@@ -1,3 +1,7 @@
+import DataStructure.GraphColor;
+import DataStructure.SAT;
+import DataStructure.ThreeSAT;
+
 public class ThreeSAT_TO_GraphColoring {
     public static void main(String[] args){
         if(args.length < 1){
@@ -18,7 +22,8 @@ public class ThreeSAT_TO_GraphColoring {
 //        System.out.println(graphColor.getEdges().size());
 //        System.out.println(graphColor.getNodes());
 
-        graphColor.print();
+//        graphColor.print();
+        graphColor.output("output.txt");
 //        sat3.print();
     }
 }

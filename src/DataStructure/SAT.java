@@ -1,3 +1,6 @@
+package DataStructure;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class SAT {
@@ -38,6 +41,25 @@ public class SAT {
             clause.print();
         }
         System.out.println(clauses.size());
+    }
+
+    public void output(String filename){
+        try{
+            FileWriter writer = new FileWriter(filename);
+//            writer.write();
+            StringBuilder sb = new StringBuilder();
+            sb.append("p cnf " + this.getNumVar() + " " + this.getClauses().size() + "\n");
+            for(Clause clause: clauses){
+                sb.append(clause.toString() + "\n");
+            }
+            writer.write(sb.toString());
+            writer.flush();
+            writer.close();
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+
     }
 
 }

@@ -1,3 +1,6 @@
+import DataStructure.GraphColor;
+import DataStructure.SAT;
+
 public class GraphColoring_TO_SAT {
     public static void main(String[] args){
         if(args.length < 1){

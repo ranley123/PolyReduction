@@ -1,5 +1,6 @@
+package DataStructure;
+
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class Clause {
     ArrayList<Integer> literals;
@@ -27,12 +28,17 @@ public class Clause {
     }
 
     public void print(){
-        StringBuilder sb = new StringBuilder();
+        System.out.println(this.toString());
+    }
+
+    @Override
+    public String toString(){
+        String res = "";
         for(Integer i: this.getLiterals()){
-            sb.append(i + " ");
+            res += (i + " ");
         }
-        sb.append("0");
-        System.out.println(sb.toString());
+        res += "0";
+        return res;
     }
 
 }

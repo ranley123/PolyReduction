@@ -1,3 +1,6 @@
+import DataStructure.SAT;
+import DataStructure.ThreeSAT;
+
 public class SAT_TO_3SAT {
 
 
@@ -12,6 +15,8 @@ public class SAT_TO_3SAT {
         Parser parser = new Parser(inputFile);
         SAT sat = parser.readFile(inputFile);
         ThreeSAT sat3 = Reduction.reduceSATTo3SAT(sat);
-        sat3.print();
+//        sat3.print();
+        sat3.output("output.txt");
     }
+
 }
