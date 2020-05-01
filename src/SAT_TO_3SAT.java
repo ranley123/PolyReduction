@@ -16,7 +16,7 @@ public class SAT_TO_3SAT {
         SAT sat = parser.readFile(inputFile);
         ThreeSAT sat3 = Reduction.reduceSATTo3SAT(sat);
 //        sat3.print();
-        sat3.output("output.txt");
+        sat3.output("./src/input.txt");
     }
 
 }

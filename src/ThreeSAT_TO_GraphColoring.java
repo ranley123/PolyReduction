@@ -23,7 +23,7 @@ public class ThreeSAT_TO_GraphColoring {
 //        System.out.println(graphColor.getNodes());
 
 //        graphColor.print();
-        graphColor.output("output.txt");
+        graphColor.output("output.col");
 //        sat3.print();
     }
 }

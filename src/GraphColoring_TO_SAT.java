@@ -14,6 +14,8 @@ public class GraphColoring_TO_SAT {
         GraphColor graphColor = parser.readGraph(inputFile);
         SAT sat = Reduction.reduceGraphColoringToSAT(graphColor);
 //        graphColor.print();
-        sat.print();
+//        sat.print();
+        sat.output("./output.txt");
     }
+
 }
