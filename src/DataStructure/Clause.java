@@ -1,6 +1,10 @@
-import java.util.ArrayList;
-import java.util.HashMap;
+package DataStructure;
 
+import java.util.ArrayList;
+
+/**
+ * class for Clause
+ */
 public class Clause {
     ArrayList<Integer> literals;
     private int numLiteral = 0;
@@ -9,11 +13,19 @@ public class Clause {
         literals = new ArrayList<>();
     }
 
+    /**
+     * add a new literal to list
+     * @param literal
+     */
     public void addLiteral(int literal){
         literals.add(literal);
         numLiteral++;
     }
 
+    /**
+     * return a list of literals
+     * @return
+     */
     public ArrayList<Integer> getLiterals(){
         return literals;
     }
@@ -22,16 +34,26 @@ public class Clause {
         return literals.contains(literal);
     }
 
+    /**
+     * get number of literals
+     * @return
+     */
     public int getNumLiteral(){
         return  numLiteral;
     }
 
     public void print(){
-        StringBuilder sb = new StringBuilder();
+        System.out.println(this.toString());
+    }
+
+    @Override
+    public String toString(){
+        String res = "";
         for(Integer i: this.getLiterals()){
-            sb.append(i + ", ");
+            res += (i + " ");
         }
-        System.out.println(sb.toString());
+        res += "0";
+        return res;
     }
 
 }
