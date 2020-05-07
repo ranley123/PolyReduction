@@ -9,13 +9,11 @@ public class Graph {
     private int numEdge = 0;
     private ArrayList<Node> nodes = new ArrayList<>();
     private ArrayList<Edge> edges = new ArrayList<>();
-
     private HashMap<Integer, Integer> clauseIndexMap = new HashMap<>();
 
     public void setNumNode(int numNode){
         this.numNode = numNode;
     }
-
     public int getNumNode(){
         return numNode;
     }
@@ -23,19 +21,13 @@ public class Graph {
     public void setNumEdge(int numEdge){
         this.numEdge = numEdge;
     }
-
     public int getNumEdge(){
         return numEdge;
     }
 
     public void addEdge(Edge edge){
-        edges.add(edge);
-    }
-    public void setNodes(ArrayList<Node> nodes){
-        this.nodes = nodes;
-    }
-    public ArrayList<Node> getNodes(){
-        return nodes;
+        if(!edges.contains(edge))
+            edges.add(edge);
     }
     public void setEdges(ArrayList<Edge> edges){
         this.edges = edges;
@@ -44,13 +36,23 @@ public class Graph {
         return edges;
     }
 
+    public void setNodes(ArrayList<Node> nodes){
+        this.nodes = nodes;
+    }
+    public ArrayList<Node> getNodes(){
+        return nodes;
+    }
+
     public void setClauseIndexMap(HashMap<Integer, Integer> clauseIndexMap){
         this.clauseIndexMap = clauseIndexMap;
     }
-
     public HashMap<Integer, Integer> getClauseIndexMap(){
         return clauseIndexMap;
     }
+
+    /**
+     * print out the graph
+     */
     public void print(){
         StringBuilder sb = new StringBuilder();
         for(Node node: nodes){
@@ -75,6 +77,10 @@ public class Graph {
         return sb.toString();
     }
 
+    /**
+     * output this graph into file with a correct format
+     * @param filename
+     */
     public void output(String filename){
         try{
             FileWriter writer = new FileWriter(filename);

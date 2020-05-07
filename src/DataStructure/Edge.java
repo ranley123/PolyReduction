@@ -3,6 +3,7 @@ package DataStructure;
 public class Edge {
     public Node w;
     public Node v;
+
     public Edge(Node w, Node v){
         if(w.id > v.id){
             this.w = v;;
@@ -14,6 +15,11 @@ public class Edge {
         }
     }
 
+    /**
+     * edges are equal if they have nodes with same literals
+     * @param obj
+     * @return
+     */
     @Override
     public boolean equals(Object obj) {
         if (obj == this) {
@@ -24,7 +30,7 @@ public class Edge {
         }
 
         Edge guest = (Edge) obj;
-        return guest.w == this.w && guest.v == this.v;
+        return (guest.w == this.w && guest.v == this.v) || (guest.v == this.w && guest.w == this.v);
     }
 
     @Override

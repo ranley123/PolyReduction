@@ -4,11 +4,12 @@ import DataStructure.ThreeSAT;
 
 public class ThreeSAT_TO_GraphColoring {
     public static void main(String[] args){
-        if(args.length < 1){
-            System.out.println("Please use java ThreeSAT_TO_GraphColoring [input filename]");
+        if(args.length != 2){
+            System.out.println("Please use java ThreeSAT_TO_GraphColoring [input filename] [output filename]");
+            return;
         }
         String inputFile = args[0];
-//        String outputFile = args[1];
+        String outputFile = args[1];
 
         // starts to read file
         Parser parser = new Parser(inputFile);
@@ -20,10 +21,9 @@ public class ThreeSAT_TO_GraphColoring {
 
         GraphColor graphColor = Reduction.reduce3SATToGraphColoring(sat3);
 //        System.out.println(graphColor.getEdges().size());
-//        System.out.println(graphColor.getNodes());
+//        System.out.println(graphColor.toString());
 
-//        graphColor.print();
-        graphColor.output("output.col");
+        graphColor.output(outputFile);
 //        sat3.print();
     }
 }

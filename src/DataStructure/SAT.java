@@ -43,10 +43,13 @@ public class SAT {
         System.out.println(clauses.size());
     }
 
+    /**
+     * output SAT instance to a file
+     * @param filename
+     */
     public void output(String filename){
         try{
             FileWriter writer = new FileWriter(filename);
-//            writer.write();
             StringBuilder sb = new StringBuilder();
             sb.append("p cnf " + this.getNumVar() + " " + this.getClauses().size() + "\n");
             for(Clause clause: clauses){

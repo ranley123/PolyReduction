@@ -10,6 +10,10 @@ public class CombinationGenerator {
         makeCombinations(0);
     }
 
+    /**
+     * generate all subsets of a list of vars with size 2 by backtracking
+     * @param start
+     */
     private void makeCombinations(int start){
         if(start >= vars.size() - 1)
             return;

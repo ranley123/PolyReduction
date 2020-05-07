@@ -10,16 +10,21 @@ public class Parser {
 
     String inputFile;
 
-
     public Parser(String inputFile){
         this.inputFile = inputFile;
     }
 
+    /**
+     * read file into SAT instance
+     * @param filename
+     * @return
+     */
     public SAT readFile(String filename) {
         ArrayList<Clause> clauses = new ArrayList<>();
         SAT sat = new SAT();
         int numVar = 0;
         int numClause = 0;
+
         try{
             BufferedReader reader = new BufferedReader(new FileReader(filename));
             String line = "";
@@ -30,6 +35,7 @@ public class Parser {
                     continue;
                 line = line.strip();
                 String[] words = line.split("\\s+");
+
                 if(words[0].equals("c")){ // extra information so don't need to be processed
                     continue;
                 }
@@ -47,6 +53,7 @@ public class Parser {
                     clauses.add(curClause);
                 }
             }
+            // set up the instance
             sat.setNumVar(numVar);
             sat.setNumClause(numClause);
             sat.setClauses(clauses);
@@ -61,7 +68,11 @@ public class Parser {
         return null;
     }
 
-
+    /**
+     * reads file into a graph color instance
+     * @param filename
+     * @return
+     */
     public GraphColor readGraph(String filename){
         GraphColor graphColor = new GraphColor();
         int numNode = 0;
@@ -91,11 +102,12 @@ public class Parser {
                     numEdge = Integer.parseInt(words[3]);
 
                     String nextLine = reader.readLine();
-                    if(!nextLine.startsWith("colours")){
-                        throw new IOException("no colours specified");
+                    if(!nextLine.startsWith("k")){
+                        numColor = 3; // default color number
                     }
-                    numColor = Integer.parseInt(nextLine.split("\\s+")[1]);
-
+                    else{
+                        numColor = Integer.parseInt(nextLine.split("\\s+")[1]);
+                    }
                 }
                 else{ // construct a new edge
                     int start = Integer.parseInt(words[1]);
@@ -104,13 +116,16 @@ public class Parser {
                     Node w = new Node(start);
                     Node v = new Node(end);
 
+                    // get the node of the literal if exists
                     if(!nodes.contains(w)){
                         nodes.add(w);
                     }
+                    // else create a new node for that literal
                     else{
                         int index = nodes.indexOf(w);
                         w = nodes.get(index);
                     }
+
                     if(!nodes.contains(v)){
                         nodes.add(v);
                     }
@@ -119,6 +134,7 @@ public class Parser {
                         v = nodes.get(index);
                     }
 
+                    // create an edge for two vertices
                     Edge e = new Edge(w, v);
                     if(!edges.contains(e)){
                         edges.add(e);
@@ -131,7 +147,6 @@ public class Parser {
             graphColor.setNumNode(numNode);
             graphColor.setNodes(nodes);
             graphColor.setEdges(edges);
-
         }
         catch (FileNotFoundException e){
             System.err.println("Error: file not found");

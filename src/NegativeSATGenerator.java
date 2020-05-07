@@ -4,6 +4,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * class to generate negative SAT instances
+ */
 public class NegativeSATGenerator {
     private int numVar;
     private int numClause;
@@ -14,9 +17,14 @@ public class NegativeSATGenerator {
         clauses = new ArrayList<>();
         generate(new ArrayList<Integer>(), 1);
         this.numClause = clauses.size();
-        output("./src/input.txt");
+        output("sat.cnf");
     }
 
+    /**
+     * using backtracking to find all permutations of literals
+     * @param literals
+     * @param start - the starting index
+     */
     private void generate(ArrayList<Integer> literals, int start){
         if(start > numVar){
             Clause clause = new Clause();
@@ -37,8 +45,8 @@ public class NegativeSATGenerator {
     private void output(String filename){
         try{
             FileWriter writer = new FileWriter(filename);
-//            writer.write();
             StringBuilder sb = new StringBuilder();
+
             sb.append("p cnf " + this.numVar + " " + this.numClause + "\n");
             for(Clause clause: clauses){
                 sb.append(clause.toString() + "\n");
@@ -53,6 +61,6 @@ public class NegativeSATGenerator {
     }
 
     public static void main(String[] args){
-        NegativeSATGenerator generator = new NegativeSATGenerator(5);
+        NegativeSATGenerator generator = new NegativeSATGenerator(4);
     }
 }
